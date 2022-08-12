@@ -27,25 +27,27 @@ public class Frame {
 										'f','g','h','i','j','k','l','m','n','o',
 										'p','q','r','s','t','u','v','w','x','y',
 										'z','{','|','}','~'};
+
 	private static String[] binaryArray = {"00100000","00100001","00100010","00100011","00100100",
 										   "00100101","00100110","00100111","00101000","00101001",
-							               "00101010","00101011","00101100","00101101","00101110",
-							               "00101111","00110000","00110001","00110010","00110011",
-							               "00110100","00110101","00110110","00110111","00111000",
-							               "00111001","00111010","00111011","00111100","00111101",
-							               "00111110","00111111","01000000","01000001","01000010",
-							               "01000011","01000100","01000101","01000110","01000111",
-							               "01001000","01001001","01001010","01001011","01001100",
-							               "01001101","01001110","01001111","01010000","01010001",
-							               "01010010","01010011","01010100","01010101","01010110",
-							               "01010111","01011000","01011001","01011010","01011011",
-							               "01011100","01011101","01011110","01011111","01100000",
-							               "01100001","01100010","01100011","01100100","01100101",
-							               "01100110","01100111","01101000","01101001","01101010",
-							               "01101011","01101100","01101101","01101110","01101111",
-							               "01110000","01110001","01110010","01110011","01110100",
-							               "01110101","01110110","01110111","01111000","01111001",
-							               "01111010","01111011","01111100","01111101","01111110"};
+										   "00101010","00101011","00101100","00101101","00101110",
+										   "00101111","00110000","00110001","00110010","00110011",
+										   "00110100","00110101","00110110","00110111","00111000",
+										   "00111001","00111010","00111011","00111100","00111101",
+										   "00111110","00111111","01000000","01000001","01000010",
+										   "01000011","01000100","01000101","01000110","01000111",
+										   "01001000","01001001","01001010","01001011","01001100",
+										   "01001101","01001110","01001111","01010000","01010001",
+										   "01010010","01010011","01010100","01010101","01010110",
+										   "01010111","01011000","01011001","01011010","01011011",
+										   "01011100","01011101","01011110","01011111","01100000",
+										   "01100001","01100010","01100011","01100100","01100101",
+										   "01100110","01100111","01101000","01101001","01101010",
+										   "01101011","01101100","01101101","01101110","01101111",
+										   "01110000","01110001","01110010","01110011","01110100",
+										   "01110101","01110110","01110111","01111000","01111001",
+										   "01111010","01111011","01111100","01111101","01111110"};
+
 	private static String[] hexArray = {"20","21","22","23","24","25","26","27","28","29",
 										"2A","2B","2C","2D","2E","2F","30","31","32","33",
 										"34","35","36","37","38","39","3A","3B","3C","3D",
@@ -56,10 +58,13 @@ public class Frame {
 										"66","67","68","69","6A","6B","6C","6D","6E","6F",
 										"70","71","72","73","74","75","76","77","78","79",
 										"7A","7B","7C","7D","7E"};
+	
 	private static String[] errorMessages = {"ASCII Error 01: Invalid Character Entry.",
 											 "Hexadecimal Error 01: Invalid Character Entry.",
 											 "Binary Error 01: Invalid Character Entry.",
 											 "No Input!"};
+	
+	//Define private static globals
 	private static String[] tempArray;
 	private static StringBuilder toBinary, toHex, toAscii, noSpaces, tempAppend, tempCheck;
 	private static JFrame windowFrame;
@@ -73,11 +78,12 @@ public class Frame {
 	private static boolean top, mid, bot;
 	private static int controlConvert;
 	private static int[] holdConvert;
+	
 	public static void main(String args[]) {
 		buildFrame();
 	}
-	//buildFrame
 	
+	//buildFrame() builds frame, calls buildPanel()
 	private static void buildFrame() {
 		windowFrame = new JFrame();
 		windowFrame.setTitle("Binarium");
@@ -86,15 +92,16 @@ public class Frame {
 		windowFrame.pack();
 		windowFrame.setVisible(true);
 	}
-	//buildPanel
+	//buildPanel() builds panel, calls buildContents()
 	private static void buildPanel(Container contentPane) {
 		mainPanel = contentPane;
 		mainPanel.setLayout(new GridBagLayout());
 		panelConstraints = new GridBagConstraints();
 		buildContents();
 	}
-	//buildContents
+	//buildContents() instantiates contents, adds to mainPanel
 	private static void buildContents() {	
+		//topLabel
 		topLabel = new JLabel("ASCII", SwingConstants.CENTER);
 		topLabel.setPreferredSize(new Dimension(40,50));
 		panelConstraints.gridwidth = 1;
@@ -104,18 +111,21 @@ public class Frame {
 		panelConstraints.gridy = 0;
 		mainPanel.add(topLabel, panelConstraints);
 		
+		//middleLabel
 		middleLabel = new JLabel("Hexadecimal", SwingConstants.CENTER);
 		middleLabel.setPreferredSize(new Dimension(40,50));
 		panelConstraints.gridx = 0;
 		panelConstraints.gridy = 1;
 		mainPanel.add(middleLabel, panelConstraints);
 		
+		//bottomLabel
 		bottomLabel = new JLabel("Binary", SwingConstants.CENTER);
 		bottomLabel.setPreferredSize(new Dimension(40,50));
 		panelConstraints.gridx = 0;
 		panelConstraints.gridy = 2;
 		mainPanel.add(bottomLabel, panelConstraints);
 		
+		//topInput
 		topInput = new JTextArea();
 		topScroll = new JScrollPane(topInput);
 		topScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -127,6 +137,7 @@ public class Frame {
 		panelConstraints.gridy = 0;
 		mainPanel.add(topScroll, panelConstraints);
 		
+		//middleInput
 		middleInput = new JTextArea();
 		middleScroll = new JScrollPane(middleInput);
 		middleScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -138,6 +149,7 @@ public class Frame {
 		panelConstraints.gridy = 1;
 		mainPanel.add(middleScroll, panelConstraints);
 		
+		//bottomInput
 		bottomInput = new JTextArea();
 		bottomScroll = new JScrollPane(bottomInput);
 		bottomScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -149,6 +161,7 @@ public class Frame {
 		panelConstraints.gridy = 2;
 		mainPanel.add(bottomScroll, panelConstraints);
 	     
+		//convertInput
 		convertInput = new JButton("Convert");
 		panelConstraints.fill = GridBagConstraints.HORIZONTAL;
 		panelConstraints.gridwidth = 1;
@@ -157,6 +170,7 @@ public class Frame {
 		panelConstraints.gridy = 3;
 		mainPanel.add(convertInput, panelConstraints);
 		
+		//resetInput
 		resetInput = new JButton("Reset");
 		panelConstraints.fill = GridBagConstraints.HORIZONTAL;
 		panelConstraints.gridwidth = 1;
@@ -165,13 +179,14 @@ public class Frame {
 		panelConstraints.gridy = 3;
 		mainPanel.add(resetInput, panelConstraints);
 		
+		//errorBox
 		errorBox = new JOptionPane();
 		errorBox.setName("Error");
 		errorBox.setVisible(false);
 		mainPanel.add(errorBox);
 		addListeners();
 	}
-	//addListeners
+	//addListeners() adds click event listeners to convertInput and resetInput, as well as caret listeners to top, middle, and bottom inputs
 	private static void addListeners() {
 		convertInput.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
