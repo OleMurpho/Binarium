@@ -1,5 +1,3 @@
-package gui;
-
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -19,7 +17,7 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
 public class Frame {
-	private static char[] asciiArray = {'\s','!','"','#','$','%','&','\'','(',')',
+	private static char[] asciiArray = {' ','!','"','#','$','%','&','\'','(',')',
 										'*','+',',','-','.','/','0','1','2','3',
 										'4','5','6','7','8','9',':',';','<','=',
 										'>','?','@','A','B','C','D','E','F','G',
